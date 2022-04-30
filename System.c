@@ -20,12 +20,21 @@ void genaratebillbody ( int qty,char item[50], int price){
     printf("\t\t%d", price);
 }
 
+void genaratebillfotter ( int dis, int total){
+    printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    printf("\nDiscount\t\t\t%d%%", dis);
+    printf("\nDiscount Amount\t\t%d", (total/100)*dis);
+    printf("\nTotal Amount\t\t%d", total-((total/100)*dis));
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+}
+
 int main()
 {
 
 int a;
 genaratebillheader ("abc", "hsja");
 genaratebillbody ( 5,"aaaa", 567);
+genaratebillfotter ( 5, 500);
 return(0);
 
 }
