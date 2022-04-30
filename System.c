@@ -1,10 +1,11 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
 //functions to genarate the bills
 void genaratebillheader (char name[50], char date[30]){
     printf("\tBilling System by Loch");
-    printf("\n\t ===================");
+    printf("\n=========================================");
     printf("\nDate:        %s", date);
     printf("\nInvoice to:  %s ", name);
     printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -28,19 +29,42 @@ void genaratebillfotter ( int dis, int total){
     printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 }
 
+//structures
+
+struct item
+{
+    char iname[50];
+    int iqty;
+    float iprice;
+};
+
+struct order
+{
+    char cname[50];
+    char date[15];
+    int noofitems;
+    struct item itm[];
+
+};
+
+
 int main()
 {
     int pw;
     int opt;
     char cn[50];
     int cq;
+    int w;
+    struct order ord;
+    struct item item;
+
     printf("Enter pincode :");
     
     scanf("%d",&pw);
 
     if (pw==1234){
         printf("\tBilling System by Loch");
-        printf("\n\t ===================");
+        printf("\n=========================================");
         printf("\n\n");
         printf("You are successfully login to the system");
         printf("\n\n");
@@ -53,22 +77,35 @@ int main()
         printf("\n\n");
         printf("Your choice: ");
         scanf("%d",&opt);
-
+        fgetc(stdin);
         switch (opt)
         {
         case 1:
 
             system("clear");
             printf("\tBilling System by Loch");
-            printf("\n\t ===================");
+            printf("\n=========================================");
             printf("\n\n");
-            printf("~~~~Add new bill~~~~");
+            printf(">>>Add new bill");
             printf("\n\n");
-            printf(" Please enter cusmoter name: ");
-            scanf("%s",&cn);
-            printf("n/ Please enter Number Of items to enter ");
+            printf("Please enter cusmoter name: ");
+            fgets(ord.cname,50,stdin);
+            ord.cname[strlen(ord.cname)-1]=0;
+            strcpy(ord.date,__DATE__);
+            printf("Please enter Number Of items to enter ");
             scanf("%d",&cq);
-            
+
+            for (w=0; w<cq; w++) {
+                fgetc(stdin);
+                printf("Please enter name of item number %d :", w+1);
+                fgets(ord.itm[w].iname,50,stdin);
+                printf("Please enter the quantity :");
+                scanf("%d", &ord.itm[w].iqty);
+                printf("Please enter the unit price :");
+                scanf("%f", &ord.itm[w].iprice);
+
+            }
+
 
             break;
         
